@@ -2,8 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ed?logo=docker)](https://www.docker.com/)
-[![DOI](https://zenodo.org/badge/1236559067.svg)](https://doi.org/10.5281/zenodo.20138049)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20138050.svg)](https://doi.org/10.5281/zenodo.20138050)
 
 A web-based repairability assessment tool implementing the DIN 45554 German industrial standard for measuring and evaluating the repairability of products.
 
