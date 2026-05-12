@@ -1,0 +1,24 @@
+# Node.js
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+npm-debug.log
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# dotEnv
+.env
+
+# macOS
+.DS_Store
+
+# ignore these folders
+frontend/src/app/produktgruppe-teile/produktgruppe-teile.component copy.ts
+frontend/src/app/bewertungsprozess/bewertungsprozess.component copy 2.ts
+frontend/src/app/bewertungsprozess/bewertungsprozess.component copy.html
+frontend/src/app/bewertungsprozess/bewertungsprozess.component copy.ts
+backend/kennzahlTeilkriterienController copy.js
+backend/kennzahlTeilkriterien.model copy.js

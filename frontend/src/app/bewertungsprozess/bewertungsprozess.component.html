@@ -1,0 +1,289 @@
+<!-- <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>General</th>
+        <th *ngFor="let componentName of componentNames; let last = last" colspan="3">
+          {{ componentName }}
+          <button 
+          *ngIf="last" 
+          class="add-btn" 
+          (click)="addComponent()" 
+          title="Neue Komponente hinzufügen">
+          >
+          </button>
+          </th> -->
+          <!-- <th colspan="3">Product</th>  -->
+      <!-- </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <ng-container *ngFor="let componentName of componentNames">
+          <th>Factors</th>
+          <th>Points</th>
+          <th>Class</th>
+        </ng-container> -->
+        <!-- 
+        <th>Factors</th>
+        <th>Points</th>
+        <th>Class</th> -->
+      <!-- </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let component of visibleComponents; let i = index">
+        <td>{{ component.criterion }}</td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="generalValues[i]"
+            (blur)="updateGeneral(i); checkGeneralSumAfterLastChange(i)"
+            maxlength="5"
+            placeholder="z.B. 30%"
+            [value]="generalValues[i] || '0'" 
+          />
+        </td>
+        <ng-container *ngFor="let comp of component.data; let j = index">
+          <td>   
+            <input
+            type="text"
+            [(ngModel)]="comp.factors"
+            (blur)="onFactorEdit(i, j)"
+            placeholder="%"
+          />
+        </td>
+          <td>{{ comp.points }}</td>
+          <td>
+            <input
+            [type]="component.criterion === 'Disassembly Depth' ? 'number' : 'text'"
+            [(ngModel)]="comp.class"
+            (blur)="updatePoints(i, j)"
+            [min]="component.criterion === 'Disassembly Depth' ? 1 : null"
+            [max]="component.criterion === 'Disassembly Depth' ? 10 : null"
+            [title]="component.criterion === 'Disassembly Depth' ? 'Bitte eine Zahl zwischen 1 und 10 eingeben' : ''"
+          />
+          </td>
+        </ng-container> -->
+        
+        <!-- <td>
+          <input
+          type="text"
+          [(ngModel)]="component.product.factors"
+          (change)="onFactorEdit(i, 1)"
+          placeholder="%"
+        />
+
+        </td>
+        <td>{{ component.product.points }}</td>
+        <td>
+          <input
+      [type]="component.criterion === 'Disassembly Depth' ? 'number' : 'text'"
+      [(ngModel)]="component.product.class"
+      (blur)="updateProductColumn(i)"
+      [min]="component.criterion === 'Disassembly Depth' ? 1 : null"
+      [max]="component.criterion === 'Disassembly Depth' ? 10 : null"
+      [title]="component.criterion === 'Disassembly Depth' ? 'Bitte eine Zahl zwischen 1 und 10 eingeben' : ''"
+    />
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<!-- Button zum Hinzufügen neuer Komponenten 
+<button (click)="addComponent()">Weitere Komponente hinzufügen</button> -->
+
+<!-- Berechnungstabelle -->
+<!-- Neue Tabelle mit Resultaten und Bewertungen -->
+<!-- <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>General</th>
+        <ng-container *ngFor="let componentName of componentNames">
+          <th>{{ componentName }}</th>
+        </ng-container>
+        <th>Product</th>
+      </tr>
+    </thead>
+    <tbody> -->
+      <!-- Result row -->
+      <!-- <tr>
+        <td>Result</td>
+        <td> {{resultValues.general}}
+        </td>
+        <ng-container *ngFor="let componentName of componentNames">
+          <td>
+            <input
+              type="text"
+              [(ngModel)]="resultValues[componentName]"
+              (input)="onInputChange()"
+              (blur)="updateResult()"
+            />
+          </td>
+        </ng-container>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="resultValues.product"
+            (input)="onInputChange()"
+            (blur)="updateResult()"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Factor Final Assessment</td>
+        <td> -->
+          <!-- Eingabefeld für General -->
+           
+      
+            <!-- {{ factorFinalAssessmentValues['general']}}
+          
+        </td>
+        <ng-container *ngFor="let componentName of componentNames">
+          <td>
+            <input 
+              type="number" 
+              [(ngModel)]="factorFinalAssessmentValues[componentName]" 
+              (input)="onInputChange()"
+              min="0.1" 
+              max="1" 
+              step="0.1" 
+              style="width: 100%;"
+            />
+          </td>
+        </ng-container>
+        <td> -->
+          <!-- Eingabefeld für Product -->
+          <!-- <input 
+            type="number" 
+            [(ngModel)]="factorFinalAssessmentValues['product']" 
+            (input)="onInputChange()"
+            min="0.1" 
+            max="1" 
+            step="0.1" 
+            style="width: 100%;"
+          />
+        </td>
+      </tr>
+       -->
+      
+
+
+<!-- Final Assessment row -->
+<!-- <tr>
+  <td>Final Assessment</td>
+  <td>{{ finalAssessmentValue.toFixed(2) }}</td>
+  <td *ngFor="let component of assessmentColumns">
+  </td>
+</tr> -->
+
+
+<!-- Final Assessment row -->
+<!-- <tr>
+  <td>Final Assessment</td> -->
+  <!-- Zeigt das allgemeine Ergebnis an -->
+  <!-- <td>{{ finalAssessmentValue.toFixed(2) }}</td>   Das berechnete Ergebnis wird hier angezeigt -->
+
+  <!-- Iteriere durch die Komponenten und zeige die jeweiligen Ergebnisse -->
+  <!-- <ng-container *ngFor="let componentName of componentNames"> -->
+    <!-- <td>{{ finalAssessment[componentName]  }}</td> -->
+  <!-- </ng-container> -->
+
+  <!-- Zeigt das Produkt-Ergebnis an -->
+  <!-- <td>{{ finalAssessment['product'] }}</td> -->
+<!-- </tr>
+    </tbody>
+  </table>
+</div>
+
+<button (click)="saveBewertungsprozess()">Neue Bewertung speichern</button>
+<button (click)="loadBewertungsprozesse()">Bewertungen laden</button> -->
+
+
+<div class="table-container">
+  <h3>Explanation of the criteria</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th rowspan="2">Criteria</th>
+        <th colspan="8">Points</th>
+        <th rowspan="2">Description</th>
+      </tr>
+      <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let explanation of explanations">
+        <td>{{ explanation.criterion }}</td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.A"
+            (input)="updateClassPointsMapping(explanation.criterion, 'A', explanation.points.A)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.B"
+            (input)="updateClassPointsMapping(explanation.criterion, 'B', explanation.points.B)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.C"
+            (input)="updateClassPointsMapping(explanation.criterion, 'C', explanation.points.C)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.D"
+            (input)="updateClassPointsMapping(explanation.criterion, 'D', explanation.points.D)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.E"
+            (input)="updateClassPointsMapping(explanation.criterion, 'E', explanation.points.E)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.F"
+            (input)="updateClassPointsMapping(explanation.criterion, 'F', explanation.points.F)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.G"
+            (input)="updateClassPointsMapping(explanation.criterion, 'G', explanation.points.G)"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="explanation.points.H"
+            (input)="updateClassPointsMapping(explanation.criterion, 'H', explanation.points.H)"
+          />
+        </td>
+        <td>{{ explanation.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

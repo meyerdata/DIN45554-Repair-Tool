@@ -1,0 +1,219 @@
+<div id="produktgruppeTeileContent" class="container mt-5 pt-5">
+    <div class="content-wrapper">
+        <!-- Linker Bereich: Textbereich (70%) -->
+        <div class="text-section">
+            <!-- Button zur Rückkehr zur Startseite -->
+            <a class="home-button" href="index.html">
+               <i class="fas fa-house"></i>
+            </a>
+            <!-- Auswahl der Produktgruppe -->
+            <h3 class="mt-4">Select Product Group</h3>
+            <select id="product-group" class="form-control mb-3" [(ngModel)]="selectedProduktgruppe" (change)="onProduktgruppeChange()">
+              <option value="" disabled selected>Select Product Group</option>
+              <!-- Dynamische Erstellung der Optionen basierend auf den verfügbaren Produktgruppen -->
+              <option *ngFor="let group of produktgruppen" [value]="group.produktgruppe_id">{{ group.name }}</option>
+            </select>
+            
+            <!-- Auswahl der Teile -->
+            <div class="mt-4">
+              <h3>Select Part</h3>
+              <!-- Dynamische Erstellung der Checkboxen basierend auf den Teilen der ausgewählten Produktgruppe -->
+              <div *ngFor="let teil of teile" class="form-check">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="teil.selected" />
+                <label class="form-check-label">{{ teil.name }}</label>
+              </div>
+            </div>
+  
+            <!-- Button zur Bestätigung der Teileauswahl -->
+            <div class="mt-4">
+                <button class="btn btn-success" (click)="finalizeParts()">
+                    <i class="fas fa-check"></i> Confirm Selection
+                </button>
+            </div>
+  
+            <!-- Neue Tabelle für die Gewichtung der Teile -->
+            <div *ngIf="showWeightingTable" class="mt-4">
+                <h3>Weighting of Parts</h3>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Part</th>
+                            <th>Weight</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamische Erstellung der Zeilen basierend auf den ausgewählten Teilen -->
+                        <tr *ngFor="let teil of selectedTeile; let i = index">
+                            <td>{{ teil.name }}</td>
+                            <td>
+                                <!-- Eingabefeld für das Gewicht des Teils -->
+                                <input type="number" class="form-control" [(ngModel)]="teil.weight" placeholder="Enter weight" (change)="onWeightChange()" min="0" max="1" step="0.01">
+                            </td>
+                            <td>
+                                <!-- Textbereich für die Beschreibung des Teils -->
+                                <textarea class="form-control description-input" [(ngModel)]="teil.description" placeholder="Description" rows="2" (focus)="expandTextarea($event)" (blur)="shrinkTextarea($event)"></textarea>
+                            </td>
+                            <td>
+                                <!-- Button zum Entfernen des Teils -->
+                                <button class="btn btn-danger" (click)="removeTeil(i)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Fehlermeldung, wenn die Gewichtung nicht korrekt ist -->
+                <div *ngIf="weightError" class="text-danger" style="font-size: 10px;">
+                    The sum of weights needs to be 1.
+                </div>
+            </div>
+  
+            <!-- Neue Tabelle für "Kriterien für Produkt identifizieren" -->
+            <div *ngIf="showWeightingTable" class="mt-4">
+                <h3>Identify Criteria for the product</h3>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Criteria</th>
+                            <th>Weight</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamische Erstellung der Zeilen basierend auf den Produktkriterien -->
+                        <tr *ngFor="let criterion of productCriteria; let i = index">
+                            <td>
+                                <!-- Auswahlfeld oder Texteingabefeld für das Kriterium -->
+                                <ng-container *ngIf="!criterion.isCustom">
+                                    <select class="form-control" [(ngModel)]="criterion.criterion" (change)="onProductCriterionChange(criterion)">
+                                        <option *ngFor="let option of criteriaOptions" [value]="option.value">{{ option.text }}</option>
+                                    </select>
+                                </ng-container>
+                                <ng-container *ngIf="criterion.isCustom">
+                                    <input type="text" class="form-control" [(ngModel)]="criterion.criterion" placeholder="Own Criterion">
+                                </ng-container>
+                            </td>
+                            <td><input type="number" class="form-control" [(ngModel)]="criterion.weighting" placeholder="Weight"
+                                (change)="onWeightChange()" min="0" max="1" step="0.01">
+                            </td>
+                            <td><textarea class="form-control description-input" [(ngModel)]="criterion.description" placeholder="Description" rows="2" (focus)="expandTextarea($event)" (blur)="shrinkTextarea($event)"></textarea></td>
+                            <td>
+                                <!-- Button zum Entfernen des Kriteriums -->
+                                <button class="btn btn-danger" (click)="removeProductCriterion(i)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Button zum Hinzufügen eines neuen Kriteriums -->
+                <button class="btn btn-secondary" (click)="addProductCriterion()">
+                    <i class="fas fa-plus"></i> add criteria
+                </button>
+            </div>
+
+            <!-- Fehlermeldung für Produktkriterien -->
+            <div *ngIf="productCriteriaWeightError" class="text-danger" style="font-size: 10px;">
+                The sum of weights for the product criteria must be 1.
+            </div>
+  
+            <!-- Tabellen für ausgewählte Teile -->
+            <div *ngFor="let teil of selectedTeile" class="mt-5">
+                <h3>Identify Criteria for {{ teil.name }}</h3>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Criteria</th>
+                            <th>Weight</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamische Erstellung der Zeilen basierend auf den Kriterien des Teils -->
+                        <tr *ngFor="let criterion of teil.criteria; let i = index">
+                            <td>
+                                <!-- Auswahlfeld oder Texteingabefeld für das Kriterium -->
+                                <ng-container *ngIf="!criterion.isCustom">
+                                    <select class="form-control" [(ngModel)]="criterion.criterion" (change)="onCriterionChange(criterion)">
+                                        <option *ngFor="let option of criteriaOptions" [value]="option.value">{{ option.text }}</option>
+                                    </select>
+                                </ng-container>
+                                <ng-container *ngIf="criterion.isCustom">
+                                    <input type="text" class="form-control" [(ngModel)]="criterion.criterion" placeholder="Own criterion">
+                                </ng-container>
+                            </td>
+                            <td><input type="number" class="form-control" [(ngModel)]="criterion.weighting" placeholder="Weight"
+                                (change)="onWeightChange()" min="0" max="1" step="0.01">
+                            </td>
+                            <td><textarea class="form-control description-input" [(ngModel)]="criterion.description" placeholder="Description" rows="2" (focus)="expandTextarea($event)" (blur)="shrinkTextarea($event)"></textarea></td>
+                            <td>
+                                <!-- Button zum Entfernen des Kriteriums -->
+                                <button class="btn btn-danger" (click)="removeCriterion(teil, i)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Button zum Hinzufügen eines neuen Kriteriums -->
+                <button class="btn btn-secondary" (click)="addCriterion(teil)">
+                    <i class="fas fa-plus"></i> add Criteria
+                </button>
+            </div>
+
+            <!-- Fehlermeldung für Kriterien der einzelnen Teile -->
+            <ng-container *ngFor="let error of partsCriteriaWeightErrors; let i = index">
+                <div *ngIf="error" class="text-danger" style="font-size: 10px;">
+                    The sum of weights for {{ selectedTeile[i].name }} must be 1.
+                </div>
+            </ng-container>
+            
+            <!-- Button zur Erstellung der Produktversion -->
+            <div *ngIf="selectedTeile.length > 0" class="mt-4">
+                <button class="btn btn-primary" (click)="createProductVersion()">
+                    <i class="fas fa-box"></i> Choose Product Version
+                </button>
+            </div>
+        </div>
+  
+        <!-- Rechter Bereich: Infobuttons (30%) -->
+        <div class="info-section">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                          <i class="fa-solid fa-book" style="font-size: 24px;"></i>
+                          <hr style="margin: 0%;">
+                          <p class="card-text">
+                              <strong>Instructions</strong>
+                              <br>
+                              1. Select the product group.
+                              <br>
+                              2. Select the parts and confirm your selection.
+                              <br>
+                              3. Weight the parts.
+                              <br>
+                              <strong>Important!</strong> The total weighting for the parts must be 1.
+                              <br>
+                              4. Identify, weight and describe the criteria for the selected product.
+                              <br>
+                              <strong>Important!</strong> The total weighting for the product criteria must be 1.
+                              <br>
+                              5. Identify, weight and describe criteria for the selected parts.
+                              <br>
+                              <strong>Important!</strong> The total weighting for the criteria of a part must add up to 1.
+                              <br>
+                              6. Navigate to select the product versions.
+                          </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

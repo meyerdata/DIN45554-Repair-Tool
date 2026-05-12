@@ -1,0 +1,173 @@
+<!-- info-modal.component.html Klassifizierungs Tabelle der Kriterien -->
+<!-- Classes according to https://www.cencenelec.eu/media/CEN-CENELEC/CWAs/RI/2026/CWA18313_2025/cwa18313_2025.pdf -->
+<div class="modal modal-klasse" tabindex="-1" role="dialog" *ngIf="isOpen">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ein Beispielschema für die Klassifizierung der Kriterien</h5>
+          <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Kriterien</th>
+                        <th>Klassen</th>
+                        <th>Werte</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Befestigungselemente</td>
+                        <td>
+                            <p>A: Leicht entfernbar und wiederverwendbar.</p>
+                            <p>B: Entfernbar, aber nicht wiederverwendbar.</p>
+                            <p>C: Weder Entfernbar noch wiederverwendbar.</p> 
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 3</p>
+                            <p>C = 0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Werkzeuge</td>
+                        <td>
+                            <p>A: Allgemein verfügbare Werkzeuge (Standard Werkzeuge wie z.B eine Standard Zangen).</p>
+                            <p>B: Spezielle Werkzeuge, die leicht zugänglich sind (z.B. spezielle Zangen).</p>
+                            <p>C: Hersteller-spezifische Werkzeuge (nur vom Hersteller verfügbar).</p> 
+                            <p>D: Hochspezialisierte Werkzeuge (nur in spezialisierten Werkstätten verfügbar).</p> 
+                            <p>E: Einmalige Werkzeuge (werden nach Gebrauch zerstört oder sind sehr schwer zu beschaffen).</p> 
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 4</p>
+                            <p>C = 3</p>
+                            <p>D = 2</p>
+                            <p>E = 0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Verfügbarkeit von Ersatzteilen</td>
+                        <td>
+                            <p>A: Öffentlich verfügbar (jeder kann das Ersatzteil erwerben).</p>
+                            <p>B: Für unabhängige Reparaturdienstleister verfügbar (Fachleute, die nicht vom Hersteller autorisiert sind).</p>
+                            <p>C: Für von Herstellern autorisierte Reparaturdienstleister verfügbar.</p> 
+                            <p>D: Nur für den Hersteller verfügbar (nur der Hersteller selbst hat Zugang zu den Ersatzteilen).</p> 
+                            <p>E: Keine Ersatzteile verfügbar.</p>
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 4</p>
+                            <p>C = 3</p>
+                            <p>D = 2</p>
+                            <p>E = 0</p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Verfügbarkeitsdauer von Ersatzteilen</td>
+                        <td>
+                            <p>A: Langfristige Verfügbarkeit (Ersatzteile sind für einen Zeitraum verfügbar, der die erwartete Lebensdauer des Produkts abdeckt).</p>
+                            <p>B: Mittelfristige Verfügbarkeit (Ersatzteile sind für einen Zeitraum verfügbar, der eine mittlere Lebensdauer des Produkts abdeckt).</p>
+                            <p>C: Kurzfristige Verfügbarkeit (Ersatzteile sind für einen kurzen Zeitraum verfügbar, z.B. zwei Jahre nach Verkauf des Produkts).</p>
+                            <p>D: Keine Informationen zur Dauer der Verfügbarkeit.</p>
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 4</p>
+                            <p>C = 2</p>
+                            <p>D = 1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Verfügbarkeit von Informationen (Umfang)</td>
+                        <td>
+                            <p>A: Umfassend (detaillierte und vollständige Reparaturanleitungen, inklusive Schaltpläne, Diagnosesoftware und Teilelisten).</p>
+                            <p>B: Mittel (ausreichende Informationen für grundlegende Reparaturen, aber möglicherweise nicht vollständig).</p>
+                            <p>C: Gering (nur sehr grundlegende Informationen oder teilweise unvollständige Anleitungen).</p>
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 3</p>
+                            <p>C = 1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Diagnose-Support und -Schnittstelle</td>
+                        <td>
+                            <p>A: Standardisierte Diagnose-Schnittstellen (z.B. USB).</p>
+                            <p>B: Hersteller-spezifische Diagnose-Schnittstellen.</p> 
+                            <p>C: Drahtlose Diagnose-Schnittstellen (z.B. Bluetooth, Wi-Fi).</p>
+                            <p>D: Software-basierte Diagnose-Schnittstellen.</p>
+                            <p>E: Keine Diagnose-Schnittstellen verfügbar.</p>
+
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 4</p>
+                            <p>C = 3</p>
+                            <p>D = 2</p>
+                            <p>E = 0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Arbeitsumgebung</td>
+                        <td>
+                            <p>A: Einfache Umgebung (kann überall durchgeführt werden, keine speziellen Anforderungen).</p>
+                            <p>B: Normale Werkstattumgebung (erfordert grundlegende Werkstattausstattung und -bedingungen).</p>
+                            <p>C: Spezialisierte Werkstattumgebung (erfordert spezialisierte Ausrüstung und Bedingungen).</p>
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 4</p>
+                            <p>C = 3</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fähigkeitsniveau</td>
+                        <td>
+                            <p>A: Keine besonderen Fähigkeiten erforderlich (einfache Aufgaben, die von jedem durchgeführt werden können).</p>
+                            <p>B: Grundlegende technische Fähigkeiten erforderlich (z.B. Basiskenntnisse in Elektronik oder Mechanik).</p>
+                            <p>C: Fortgeschrittene technische Fähigkeiten erforderlich (z.B. Kenntnisse in spezifischen Reparaturtechniken).</p>
+                            <p>D: Expertenwissen erforderlich (z.B. tiefgehende Kenntnisse in Elektronik oder spezielle Zertifizierungen).</p>
+                            <p>E: Nur durch den Hersteller durchführbar (spezialisierte Kenntnisse und Werkzeuge erforderlich).</p>
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 4</p>
+                            <p>C = 3</p>
+                            <p>D = 2</p>
+                            <p>E = 1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Zurücksetzen von Passwörtern und Werkeinstellungen</td>
+                        <td>
+                            <p>A: Einfache und umfassende Zurücksetzoptionen (einfach zugängliche und vollständig integrierte Funktion).</p>
+                            <p>B: Mittelschwere Zurücksetzoptionen (erfordert einige Schritte oder externe Unterstützung).</p>
+                            <p>C: Schwierige Zurücksetzoptionen (erfordert viele Schritte oder technische Kenntnisse).</p>
+                            <p>D: Keine Zurücksetzoptionen (es gibt keine Möglichkeit, Passwörter oder Werkseinstellungen zurückzusetzen).</p>
+                        </td>
+                        <td>
+                            <p>A = 5</p>
+                            <p>B = 3</p>
+                            <p>C = 2</p>
+                            <p>D = 1</p>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Schließen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

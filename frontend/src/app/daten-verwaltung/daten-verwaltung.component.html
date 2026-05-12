@@ -1,0 +1,154 @@
+<div class="container mt-5 pt-5">
+    <div class="content-wrapper row">
+      <!-- Linker Bereich: Hauptinhalt (70%) -->
+      <div class="col-md-8">
+        <a class="home-button" href="index.html">
+          <i class="fas fa-house"></i>
+       </a>
+        <h2 class="mt-4">Product Group Administration</h2>
+  
+        <!-- Radiobuttons zur Auswahl: Produktgruppe erstellen oder bearbeiten -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="erstellen"
+            name="auswahl"
+            [(ngModel)]="auswahlOption"
+            value="erstellen"
+            (change)="resetForm()"
+          />
+          <label class="form-check-label" for="erstellen">
+            Create new Product Group
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="bearbeiten"
+            name="auswahl"
+            [(ngModel)]="auswahlOption"
+            value="bearbeiten"
+            (change)="resetForm()"
+          />
+          <label class="form-check-label" for="bearbeiten">
+            Edit Existing Product Group
+          </label>
+        </div>
+  
+        <!-- Formular zum Erstellen einer neuen Produktgruppe -->
+        <div *ngIf="auswahlOption === 'erstellen'" class="mt-4">
+          <label for="produktgruppenName">Create Product Group:</label>
+          <input
+            id="produktgruppenName"
+            class="form-control"
+            [(ngModel)]="produktgruppenName"
+            placeholder="Name of Product Group"
+          />
+          <button class="btn btn-primary mt-3" (click)="createProduktgruppe()">Create Product Group</button>
+  
+          <!-- Nachricht nach dem Erstellen der Produktgruppe -->
+          <div *ngIf="produktgruppeErstellt" class="alert alert-info mt-4">
+            {{ produktgruppeErstellt }}
+          </div>
+        </div>
+  
+        <!-- Produktgruppen bearbeiten -->
+        <div *ngIf="auswahlOption === 'bearbeiten'" class="mt-4">
+          <h3>Existing Product Groups</h3>
+          <ul class="list-group">
+            <li *ngFor="let produktgruppe of produktgruppen" class="list-group-item">
+              {{ produktgruppe.name }}
+              <button class="btn btn-warning btn-sm float-end" (click)="produktgruppeBearbeiten(produktgruppe)">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="btn btn-danger btn-sm float-end me-2" (click)="deleteProduktgruppe(produktgruppe)">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Teile und Versionen hinzufügen (nach Erstellen der Produktgruppe) -->
+        <div *ngIf="produktgruppeID" class="mt-4">
+          <h3>Add Parts and Versions</h3>
+  
+          <!-- Teile hinzufügen -->
+          <div>
+            <h4>Parts</h4>
+            <div *ngFor="let teil of teile; let i = index" class="mb-2">
+              <input class="form-control" placeholder="Part Name" [(ngModel)]="teil.name" />
+              <textarea
+                class="form-control mt-2"
+                [(ngModel)]="teil.beschreibung"
+                placeholder="Part Description"
+                rows="2"
+              ></textarea>
+              <button class="btn btn-danger mt-2" (click)="removeTeil(i)">Remove Parts</button>
+            </div>
+            <button class="btn btn-secondary mt-3" (click)="addTeil()">Add Part</button>
+          </div>
+  
+          <!-- Versionen hinzufügen -->
+          <div class="mt-4">
+            <h4>Versions</h4>
+            <div *ngFor="let version of versionen; let i = index" class="mb-2">
+              <input class="form-control" placeholder="Version Name" [(ngModel)]="version.name" />
+              <textarea
+                class="form-control mt-2"
+                [(ngModel)]="version.beschreibung"
+                placeholder="Version Description"
+                rows="2"
+              ></textarea>
+              <button class="btn btn-danger mt-2" (click)="removeVersion(i)">Remove Version</button>
+            </div>
+            <button class="btn btn-secondary mt-3" (click)="addVersion()">Add Version</button>
+          </div>
+  
+          <!-- Teile und Versionen speichern -->
+          <button class="btn btn-success mt-4" (click)="saveTeileUndVersionen()">Save</button>
+  
+          <!-- Erfolgsmeldung anzeigen, wenn das Formular ausgeblendet ist -->
+          <div *ngIf="speichernErfolgreich" class="alert alert-success mt-4">
+            Data saved successfully. 
+          </div>
+        </div>
+      </div>
+  
+      <!-- Rechter Bereich: Infobuttons (30%) -->
+      <div class="info-section">
+        <div class="row">
+          <!--Erste Infokaste-->  
+          <div class="col-sm-12 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <hr style="margin: 0%;">
+                   <p class="card-text">
+                    Here you have the option of either adding a new product group 
+                    with the corresponding parts and versions for evaluation in the database 
+                    or editing a product group already existing in the database as well as its 
+                    parts and versions. If you do not wish to create a new product group 
+                    or edit existing data, you can start the evaluation process in the lower map.
+                   </p>
+                   <i class="fa-solid fa-circle-arrow-down" style="font-size: 30px;"></i> 
+                </div>
+            </div>
+        </div>
+            <!--Zweite Karte -> Bewertung Starten--> 
+            <div class="col-sm-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <hr style="margin: 0%;">
+                       <p class="card-text"><strong>Start Assessment Process >></strong></p>
+                       <a [routerLink]="['/produktgruppe-teile']" class="btn btn-dark">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </a>
+                </div>
+              </div>
+            </div>  
+         </div>
+      </div>
+    </div>
+  </div>
+  

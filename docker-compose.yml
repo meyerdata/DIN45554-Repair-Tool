@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend-app
+    restart: no
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: sh -c "sleep 5 && npx sequelize-cli db:create ||true && npm run start"
+    depends_on:
+      - db
+    ports:
+      - "8090:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=repairability-tool
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    networks:
+      - app-network
+
+
+  db:
+    image: postgres:15
+    container_name: backend-db
+    restart: always
+    environment:
+      POSTGRES_DB: repairability-tool
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d repairability-tool"]
+      interval: 5s
+      retries: 5
+      timeout: 5s
+        
+    ports:
+      - "5435:5432"
+    networks:
+      - app-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  frontend:
+    build: ./frontend
+    container_name: frontend-app
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npx ng serve --host 0.0.0.0 --port 4200
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
+    environment:
+      - VITE_API_URL=http://backend:8090
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  postgres_data:
+

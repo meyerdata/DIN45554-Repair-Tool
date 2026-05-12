@@ -1,0 +1,125 @@
+/* Ensure entire page fits 100% width and does not overflow */
+body, :host {
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tabellenlayout */
+/* Make table container fit screen width */
+.table-container {
+  margin: 0 auto;
+  max-width: 100vw;
+  width: 100vw;
+  padding: 0 10px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+  
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff; /* Weißer Hintergrund */
+  table-layout: auto;
+  max-width: 100vw;
+}
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  td {
+    white-space: nowrap;
+  }
+  
+  /* Eingabefelder */
+  input {
+    width: 40px;
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  thead th {
+    text-align: center;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  h3 {
+    margin-top: 20px;
+  }
+  
+  /* Farbcodierung für die Zellen */
+  .red {
+    background-color: red;
+  }
+  
+  .dark-blue {
+    background-color: darkblue;
+  }
+  
+  .light-blue {
+    background-color: lightblue;
+  }
+  
+  .gray {
+    background-color: lightgray;
+  }
+  
+/* Fehlermeldung im Frontend anzeigen */
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+.add-btn {
+  font-size: 14px;
+  margin-left: 20px;
+  padding: 2px 6px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor:pointer;
+}
+
+.add-btn:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.add-btn:focus {
+  outline: none;
+}

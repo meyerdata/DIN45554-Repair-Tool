@@ -1,0 +1,64 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node modules (already in root .gitignore, but belt-and-suspenders)
+node_modules
+backend/node_modules
+frontend/node_modules
+
+# npm lock files (we use package-lock.json from each service)
+package-lock.json
+
+# Environment files
+.env
+.env.*
+.envrc
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Documentation
+README.md
+LICENSE
+CONTRIBUTING.md
+docs/
+
+# Temporary files
+*.tmp
+*.temp
+*.copy
+*copy*
+* Copy*
+
+# Angular
+frontend/dist
+frontend/.angular
+frontend/coverage
+
+# Node
+*.log
+*.log*

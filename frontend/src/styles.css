@@ -1,0 +1,9 @@
+/* globale stil für Body */
+body {
+    font-family: 'Arial', sans-serif; /* Setzt die Schriftart für den gesamten Text im Body */
+    padding-top: 0; /* Keine zusätzliche Einrückung am oberen Rand des Dokuments */
+    /*background-color: white;*/
+    background: url(./assets/images/image.jpg) no-repeat center center fixed; /* Hintergrundbild-Einstellungen */
+    background-size: cover;
+    /*padding-bottom: 100px; */
+}

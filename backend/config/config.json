@@ -1,0 +1,33 @@
+{
+  "development": {
+      "username": "postgres",
+      "password": "postgres",
+      "database": "repairability-tool",
+      "host": "db",
+      "port": 5432,
+      "dialect": "postgres",
+      "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }, 
+
+  "test": {
+    "username": "${DB_USERNAME}",
+    "password": "${DB_PASSWORD}",
+    "database": "${DB_DATABASE}",
+    "host": "${DB_HOST}",
+    "port": "${DB_PORT}",
+    "dialect": "${DB_DIALECT}"
+  },
+  "production": {
+    "username": "${DB_USERNAME}",
+    "password": "${DB_PASSWORD}",
+    "database": "${DB_DATABASE}",
+    "host": "${DB_HOST}",
+    "port": "${DB_PORT}",
+    "dialect": "${DB_DIALECT}"
+  }
+}

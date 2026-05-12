@@ -1,0 +1,285 @@
+<div id="produktversionContent" class="container mt-5 pt-5">
+  <div class="content-wrapper">
+    <!-- Linker Bereich: Textbereich (70%) -->
+    <div class="text-section">
+      <!-- Überschrift für die Auswahl der Produktversionen -->
+      <h2 class="mt-4">Select Product Version for {{ produktgruppenName }}</h2>
+
+      <!-- Abschnitt zur Auswahl der verfügbaren Produktversionen -->
+      <div class="mt-4">
+        <h3>Available Product Versions</h3>
+        <div *ngFor="let version of produktversionen" class="form-check">
+          <!-- Checkbox zur Auswahl der Produktversion -->
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            id="{{ version.versionName }}" 
+            [checked]="selectedProduktversionen.includes(version)"
+            (change)="toggleVersionSelection(version)" 
+          />
+          <!-- Beschriftung für die Checkbox -->
+          <label class="form-check-label" for="{{ version.versionName }}">
+            {{ version.versionName }}
+          </label>
+        </div>
+      </div>
+
+      <!-- Button zur Bestätigung der Versionen -->
+      <div class="mt-4">
+        <button class="btn btn-success" (click)="finalizeProduktversionen()">
+          <i class="fas fa-check"></i> Confirm Selection
+        </button>
+      </div>
+
+      <!-- Klassifizierungstabellen und Button zum Berechnen der Kennzahlen -->
+      <div *ngIf="anzeigenTabellen" class="mt-5">
+        <h3>Product Group: {{ produktgruppenName }}</h3>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Criteria</th>
+              <th>Assessment Value</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let criterion of produktKriterien">
+              <td>{{ criterion.criterion }}</td>
+              <!-- Eingabefeld für den Klassifizierungswert -->
+              <td>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  [(ngModel)]="criterion.klassifizierung" 
+                  placeholder="Assessment">
+              </td>
+              <!-- Textarea für die Beschreibung -->
+              <td>
+                <textarea 
+                  class="form-control description-input" 
+                  [(ngModel)]="criterion.description" 
+                  placeholder="Description" 
+                  rows="1"
+                  (focus)="expandTextarea($event)" 
+                  (blur)="shrinkTextarea($event)">
+                </textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Tabelle für die Teile in den ausgewählten Produktversionen -->
+        <div *ngFor="let version of selectedProduktversionen" class="mt-5">
+          <h4>Version: {{ version.versionName }}</h4>
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Part Name</th>
+                <th>Criterion</th>
+                <th>Assessment Value</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let teil of version.teile">
+                <ng-container *ngFor="let criterion of teil.criteria">
+                  <tr>
+                    <td>{{ teil.name }}</td>
+                    <td>{{ criterion.criterion }}</td>
+                    <!-- Eingabefeld für den Klassifizierungswert des Kriteriums -->
+                    <td>
+                      <input 
+                        type="number" 
+                        class="form-control" 
+                        [(ngModel)]="criterion.klassifizierung" 
+                        placeholder="Assessment">
+                    </td>
+                    <!-- Textarea für die Beschreibung des Kriteriums -->
+                    <td>
+                      <textarea 
+                        class="form-control description-input" 
+                        [(ngModel)]="criterion.description" 
+                        placeholder="Description" 
+                        rows="1"
+                        (focus)="expandTextarea($event)" 
+                        (blur)="shrinkTextarea($event)">
+                      </textarea>
+                    </td>
+                  </tr>
+                </ng-container>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Button zum Berechnen der Kennzahlen, wird nach der Bestätigung der Auswahl angezeigt -->
+      <div class="mt-4" *ngIf="showKennzahlenBerechnenButton">
+        <button class="btn btn-success" (click)="berechneKennzahlen()">
+          <i class="fas fa-calculator"></i> Calculate indicator
+        </button>
+        <!-- <button class="btn btn-secondary  mt-2 " (click)="saveAllKriterien()">
+          <i class="fas fa-save"></i> Produktkriterien speichern
+        </button> -->
+      </div>
+
+      <!-- Tabelle zur Anzeige der berechneten Kennzahlen -->
+      <div *ngIf="kennzahlenBerechnet" class="mt-5">
+        <h3>Calculated indicators</h3>
+
+        <!-- Tabelle für die Produktkriterien -->
+        <h4>Product Group: {{ produktgruppenName }}</h4>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Criteria</th>
+              <th>Weight</th>
+              <th>Assessment Value</th>
+              <th>Indicator</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let criterion of produktKriterien">
+              <td>{{ criterion.criterion }}</td>
+              <td>{{ criterion.weighting }}</td>
+              <td>{{ criterion.klassifizierung }}</td>
+              <td>{{ criterion.kennwert }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Tabelle für die Teile in den ausgewählten Produktversionen -->
+        <div *ngFor="let version of selectedProduktversionen" class="mt-5">
+          <h4>Version: {{ version.versionName }}</h4>
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Part Name</th>
+                <th>Criteria</th>
+                <th>Weight</th>
+                <th>Assessment Value</th>
+                <th>Indicator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let teil of version.teile">
+                <ng-container *ngFor="let criterion of teil.criteria">
+                  <tr>
+                    <td>{{ teil.name }}</td>
+                    <td>{{ criterion.criterion }}</td>
+                    <td>{{ criterion.weighting }}</td>
+                    <td>{{ criterion.klassifizierung }}</td>
+                    <td>{{ criterion.kennwert }}</td>
+                  </tr>
+                </ng-container>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Button zum Anzeigen der Endbewertungstabelle, wird nach der Berechnung der Kennzahlen angezeigt -->
+      <div class="mt-4" *ngIf="showEndbewertungButton">
+        <button class="btn btn-info" (click)="berechneEndbewertung()">
+          <i class="fas fa-table"></i> Final Assessment
+        </button>
+      </div>
+
+      <!-- Tabelle zur Anzeige der Endbewertung -->
+      <div *ngIf="endbewertungAnzeigen" class="mt-5">
+        <h3>Final Assessment</h3>
+
+        <!-- Tabelle für die Endbewertung der Produktversionen -->
+        <div *ngFor="let version of selectedProduktversionen" class="mt-5">
+          <h4>Version: {{ version.versionName }}</h4>
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Product/Part</th>
+                <th>Indicator</th>
+                <th>Weight</th>
+                <th>Final Assessment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of version.endbewertung">
+                <td>{{ item.name }}</td>
+                <td>{{ item.kennwert }}</td>
+                <td>{{ item.gewicht }}</td>
+                <td>{{ item.endergebnis }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><strong>Reparability Index</strong></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{ version.reparierbarkeitsindex }}</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- Button zum Anzeigen der Vergleichstabelle, wird nach der Endbewertung angezeigt -->
+      <div class="mt-4" *ngIf="showVersionenVergleichenButton">
+        <button class="btn btn-info" (click)="versionenVergleichen()">
+          <i class="fas fa-balance-scale"></i> Compare Versions
+        </button>
+         <a [routerLink]="['bewertungsprozess']">
+            <button class="btn btn-info">  <i class="fas fa-balance-scale"> Show Translation Chart </i> </button>
+                    </a><router-outlet>
+          </router-outlet>
+      </div>
+
+      <!-- Tabelle zur Anzeige der Vergleichsergebnisse -->
+      <div *ngIf="vergleichsErgebnisseAnzeigen" class="mt-5">
+        <h3>Comparison of versions according to Reparability Index</h3>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Version Name</th>
+              <th>Reparability Index</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ergebnis of vergleichsErgebnisse">
+              <td>{{ ergebnis.versionName }}</td>
+              <td>{{ ergebnis.reparierbarkeitsindex }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Rechter Bereich: Infobuttons (30%) -->
+    <div class="info-section">
+      <div class="row">
+        <!-- Informationskarte 1 -->
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <hr style="margin: 0%;">
+              <p class="card-text">Learn more about the classification of criteria.</p>
+              <a class="info-button" href="kriterienIdentifikation.html">
+                <i class="fa-solid fa-circle-info"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Informationskarte 2 -->
+        <div class="col-sm-12 mt-3">
+          <div class="card">
+            <div class="card-body">
+              <hr style="margin: 0%;">
+              <p class="card-text">Learn more about the classification of criteria.</p>
+              <a class="info-button" href="kriterienIdentifikation.html">
+                <i class="fa-solid fa-circle-info"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+/* Stile für das Modal-Fenster */
+.modal {
+  display: block; /* Zeigt das Modal an */
+  position: fixed; /* Fixiert das Modal relativ zum Browserfenster */
+  z-index: 1050; /* Legt die Stapelreihenfolge fest, damit das Modal über anderen Elementen angezeigt wird */
+  left: 0; /* Positioniert das Modal am linken Rand des Bildschirms */
+  top: 0; /* Positioniert das Modal am oberen Rand des Bildschirms */
+  width: 100%; /* Modal nimmt die gesamte Breite des Bildschirms ein */
+  height: 100%; /* Modal nimmt die gesamte Höhe des Bildschirms ein */
+  overflow: hidden; /* Verhindert das Scrollen des Inhalts außerhalb des Modals */
+  background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter schwarzer Hintergrund, um den restlichen Inhalt abzudunkeln */
+}
+
+/* Stil für den Dialogcontainer innerhalb des Modals */
+.modal-dialog {
+  max-width: 800px; /* Maximale Breite des Dialogs */
+  margin: 1.75rem auto; /* Zentriert den Dialog vertikal und horizontal */
+}
+
+/* Stil für den Inhalt des Modals */
+.modal-content {
+  background-color: #fff; /* Hintergrundfarbe des Inhalts */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Leichter Rand um den Inhalt */
+  border-radius: 0.5rem; /* Abgerundete Ecken */
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5); /* Schatteneffekt um den Inhalt */
+  max-height: 90vh; /* Verhindert, dass das Modal mehr als 90% der Bildschirmhöhe einnimmt */
+  overflow-y: auto; /* Ermöglicht vertikales Scrollen, wenn der Inhalt zu groß ist */
+  padding-left: 20px; /* Innenabstand links */
+  padding-right: 20px; /* Innenabstand rechts */
+}
+
+/* Stil für den Inhaltsbereich des Modals */
+.modal-body {
+  max-height: 70vh; /* Begrenzung der Höhe des Inhaltsbereichs */
+  overflow-y: auto; /* Ermöglicht vertikales Scrollen innerhalb des Inhaltsbereichs */
+  background-color: white; /* Hintergrundfarbe des Inhaltsbereichs */
+}
+
+/* Stil für den Schließen-Button des Modals */
+button.close {
+  background-color: transparent; /* Transparenten Hintergrund für den Button */
+  border: none; /* Entfernt die Standardrahmen des Buttons */
+  padding: 0; /* Entfernt jeglichen Innenabstand */
+  cursor: pointer; /* Ändert den Mauszeiger bei Hover in eine Hand */
+  font-size: 1.5rem; /* Passt die Schriftgröße des Schließen-Icons an */
+}

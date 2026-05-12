@@ -1,0 +1,36 @@
+/* Allgemeine Stile für die Navbar */
+nav {
+  background-color: #f8f8f8; /* heller Hintergrund für die Navbar */
+  padding: 10px; /* Abstand um den Inhalt der Navbar */
+}
+
+/* Container in der Navbar auf 80% der Breite setzen */
+.navbar .container {
+  width: 80%;
+  height: 60px; /* Höhe der Navbar */
+  margin: 0 auto; /* Zentriert den Container innerhalb der Navbar */
+}
+
+/* Dunkler Hintergrund für die Navbar */
+.navbar {
+  background-color: #343a40 !important; /* Dunkler Hintergrund (Überschreibt Bootstrap-Stile) */
+}
+
+/* Stil für das Logo (navbar-brand) */
+.navbar-brand {
+  font-size: 24px;
+  color: white; /* Textfarbe für die Marke/Logo */
+}
+
+
+/* Navigationslinks */
+.navbar-nav .nav-link {
+  color: white !important; /* Weißer Text für Links */
+  padding: 20px 14px; /* Abstand um die Links */
+  transition: background-color 0.3s, color 0.3s; /* Weicher Übergang beim Hover */
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #23272b; /* Hintergrundfarbe bei Hover */
+  color: #ffffff; /* Textfarbe bei Hover */
+}

@@ -1,0 +1,235 @@
+/* Allgemeine Container */
+.container {
+  max-width: 80%; /* Maximale Breite des Containers */
+  margin: 0 auto; /* Zentriert den Container */
+  padding: 20px; /* Innenabstand für den Inhalt des Containers */
+  background-color: white; /* Hintergrundfarbe des Containers */
+  font-size: 14px; /* Schriftgröße des Textes im Container */
+}
+
+/* Flexbox Layout für den Inhalt */
+.content-wrapper {
+  display: flex; /* Flexbox-Layout für den Inhalt */
+  justify-content: space-between; /* Verteilung des Inhalts mit gleichem Abstand */
+}
+
+/* Text-Sektion (70%) */
+.text-section {
+  flex: 0 0 70%; /* Legt die Breite der Text-Sektion auf 70% fest */
+  margin-right: 20px; /* Fügt Abstand zur Info-Sektion hinzu */
+  background-color: white; /* Hintergrundfarbe der Text-Sektion */
+  padding: 20px; /* Innenabstand für den Inhalt der Text-Sektion */
+  border-radius: 5px; /* Abgerundete Ecken */
+}
+
+/* Info-Sektion (30%) */
+.info-section {
+  flex: 0 0 30%; /* Legt die Breite der Info-Sektion auf 30% fest */
+  background-color: rgba(240, 240, 240, 0.5); /* Transparenter Hintergrund */
+  padding: 20px; /* Innenabstand für den Inhalt der Info-Sektion */
+  border-radius: 5px; /* Abgerundete Ecken */
+}
+
+/* Anpassung der Bootstrap-Karten */
+.card {
+  border: none; /* Entfernt den Standardrahmen */
+  background-color: #f0f0f0; /* Hintergrundfarbe der Karte */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatteneffekt */
+}
+
+.card:hover {
+  background-color: rgba(154, 205, 50, 0.4); /* Hintergrundfarbe beim Hover */
+}
+
+/* Schriftstil der Kartentitel und -texte */
+.card-title, .card-text {
+  font-size: 12px; /* Schriftgröße */
+  color: #333; /* Schriftfarbe */
+}
+
+/* Überschriften */
+h2, h3 {
+  color: #2c3e50; /* Schriftfarbe */
+  font-family: 'Arial', sans-serif; /* Schriftart */
+  font-weight: 600; /* Schriftstärke */
+}
+
+/* Dropdown und Eingabefelder */
+.form-control {
+  border-radius: 4px; /* Abgerundete Ecken */
+  border: 1px solid #ccc; /* Rahmenfarbe */
+  padding: 8px; /* Innenabstand */
+  font-size: 12px; /* Schriftgröße */
+}
+
+/* Buttons */
+.btn {
+  border-radius: 4px; /* Abgerundete Ecken */
+  font-size: 12px; /* Schriftgröße */
+  padding: 8px 12px; /* Innenabstand */
+  margin-right: 8px; /* Abstand rechts */
+  display: flex; /* Flexbox-Layout */
+  align-items: center; /* Zentriert den Inhalt vertikal */
+}
+
+/* Spezifische Button-Stile */
+.btn-success, .btn-secondary, .btn-primary {
+  background-color: olivedrab; /* Hintergrundfarbe */
+  color: white; /* Schriftfarbe */
+  border: none; /* Kein Rahmen */
+}
+
+.btn-danger {
+  background-color: #343a40; /* Hintergrundfarbe */
+  color: white; /* Schriftfarbe */
+  border: none; /* Kein Rahmen */
+}
+
+.btn-dark {
+  width: 40px; /* Breite */
+  font-size: 14px; /* Schriftgröße */
+  background-color: olivedrab; /* Hintergrundfarbe */
+  border: none; /* Kein Rahmen */
+}
+
+/* Tabellen */
+.table {
+  width: 100%; /* Tabellenbreite */
+  margin-top: 20px; /* Abstand nach oben */
+  border-collapse: separate; /* Keine Rahmen zusammenführen */
+  border-spacing: 0; /* Kein Abstand zwischen Zellen */
+  overflow: hidden; /* Verborgener Überlauf */
+  font-size: 12px; /* Schriftgröße */
+}
+
+/* Tabellenkopf und Zellen */
+.table th, .table td {
+  padding: 12px; /* Innenabstand */
+  text-align: left; /* Linksbündiger Text */
+}
+
+.table th {
+  background-color: #343a40; /* Hintergrundfarbe des Tabellenkopfes */
+  color: white; /* Schriftfarbe */
+  font-weight: bold; /* Fettschrift */
+}
+
+.table td {
+  background-color: #f9f9f9; /* Hintergrundfarbe der Zellen */
+  border: 1px solid #ddd; /* Rahmenfarbe */
+}
+
+/* Textarea */
+.description-input {
+  transition: all 0.3s ease; /* Übergangseffekt */
+  width: 100%; /* Breite */
+  height: 30px; /* Höhe */
+}
+
+.description-input.expanded {
+  height: 100px; /* Höhe wenn erweitert */
+}
+
+/* Symbole in Buttons */
+.btn .fa {
+  margin-right: 5px; /* Abstand zum Text */
+}
+
+/* Spezifische Symbole in Buttons */
+.btn-danger .fa-trash {
+  margin-right: 0; /* Kein Abstand */
+}
+
+/* Tabellenkopf Hover-Effekt */
+thead.thead-dark th {
+  background-color: #343a40; /* Hintergrundfarbe */
+  color: #ecf0f1; /* Schriftfarbe */
+}
+
+/* Hover-Effekte */
+.btn:hover {
+  opacity: 0.9; /* Leicht transparent beim Hover */
+}
+
+.table td button {
+  display: flex; /* Flexbox-Layout */
+  align-items: center; /* Zentriert den Inhalt vertikal */
+}
+
+.form-check-label {
+  margin-left: 8px; /* Abstand links */
+  font-size: 12px; /* Schriftgröße */
+}
+
+/* Eingabefeld für benutzerdefinierte Kriterien */
+.mt-2 {
+  margin-top: 8px; /* Abstand nach oben */
+}
+
+/* Tabellenzeilen abwechselnd einfärben */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f2f2f2; /* Hintergrundfarbe der ungeraden Zeilen */
+}
+
+/* Hover für Tabellenzeilen */
+.table-hover tbody tr:hover {
+  background-color: #e0e0e0; /* Hintergrundfarbe beim Hover */
+}
+
+/* Runden der Tabellenecken */
+.table {
+  border-radius: 8px; /* Abgerundete Ecken */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-wrapper {
+      flex-direction: column; /* Spalten untereinander auf kleinen Bildschirmen */
+  }
+  .text-section {
+      margin-right: 0; /* Kein Abstand rechts */
+  }
+  .info-section {
+      margin-bottom: 20px; /* Abstand zwischen den Sektionen auf kleinen Bildschirmen */
+  }
+}
+
+/* Home-Button */
+.home-button {
+  display: inline-flex; /* Flexbox-Layout */
+  align-items: center; /* Zentriert das Icon vertikal */
+  justify-content: center; /* Zentriert das Icon horizontal */
+  width: 40px; /* Breite */
+  height: 40px; /* Höhe */
+  background-color: #343a40; /* Hintergrundfarbe */
+  border-radius: 50%; /* Macht den Button rund */
+  color: #ffffff; /* Schriftfarbe */
+  font-size: 20px; /* Schriftgröße */
+  text-decoration: none; /* Entfernt die Unterstreichung */
+  cursor: pointer; /* Zeiger-Cursor */
+  transition: background-color 0.3s ease; /* Übergangseffekt für Hintergrundfarbe */
+}
+
+.home-button:hover {
+  background-color: #23272b; /* Hintergrundfarbe beim Hover */
+}
+
+/* Info-Button */
+.info-button {
+  display: inline-flex; /* Flexbox-Layout */
+  align-items: center; /* Zentriert das Icon vertikal */
+  justify-content: center; /* Zentriert das Icon horizontal */
+  width: 30px; /* Breite */
+  height: 30px; /* Höhe */
+  background-color: #343a40; /* Hintergrundfarbe */
+  color: #ffffff; /* Schriftfarbe */
+  border-radius: 50%; /* Macht den Button rund */
+  text-decoration: none; /* Entfernt die Unterstreichung */
+  cursor: pointer; /* Zeiger-Cursor */
+  transition: background-color 0.3s ease; /* Übergangseffekt für Hintergrundfarbe */
+  font-size: 24px; /* Schriftgröße */
+}
+
+.info-button:hover {
+  background-color: #5a6904; /* Hintergrundfarbe beim Hover */
+}
