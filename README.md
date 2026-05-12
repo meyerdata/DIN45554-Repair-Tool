@@ -252,10 +252,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Authors
 
-Lisa Dawel
-Ole Meyer
-Alexandra Pehlken
+Lisa Dawel (DfKI Oldenburg),
+Ole Meyer (OFFIS e.V.),
+Alexandra Pehlken (DfKI Oldenburg)
 
 ## Funding
 
-[COMPLETE ME]
+This project has received funding from the European Union’s Horizon Europe research and innovation programme under Grant Agreement No. 101091490
