@@ -4,6 +4,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ed?logo=docker)](https://www.docker.com/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20138050.svg)](https://doi.org/10.5281/zenodo.20138050)
 
+
 A web-based repairability assessment tool implementing the DIN 45554 German industrial standard for measuring and evaluating the repairability of products.
 
 ## Table of Contents
