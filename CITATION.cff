@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "DIN45554-Repair-Tool"
+doi: "10.5281/zenodo.20138049"
+url: "https://github.com/meyerdata/DIN45554-Repair-Tool"
+repository-code: "https://github.com/meyerdata/DIN45554-Repair-Tool.git"
+license: MIT
+authors:
+  - family-names: "Dawel"
+    given-names: "Lisa"
+    affiliation: "DfKI"
+    orcid: "https://orcid.org/0009-0001-9868-3852"
+  - family-names: "Meyer"
+    given-names: "Ole"
+    affiliation: "OFFIS e.V."
+    orcid: "https://orcid.org/0000-0002-9964-5591"
+  - family-names: "Pehlken"
+    given-names: "Alexandra"
+    affiliation: "DfKI"
+    orcid: "https://orcid.org/0000-0003-1798-8679"
+
+abstract: >
+  A web-based repairability assessment tool implementing the DIN 45554
+  German industrial standard for measuring and evaluating the repairability
+  of products.
+
+keywords:
+  - repairability
+  - DIN 45554
+  - product assessment
+  - sustainability
+  - circular economy
